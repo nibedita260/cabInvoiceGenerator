@@ -25,5 +25,19 @@ namespace CabInvoiceGenerator
             }
             return Math.Max(this.cabFare, MINIMUM_FARE);
         }
+        public double CalMultipleRidesFare(Ride[] rides)
+        {
+            double totalRideFare = 0.0;
+            foreach(Ride ride in rides)
+            {
+                totalRideFare += CalculateFare(ride.distance, ride.time);
+                Console.WriteLine("total cost of multiple rides are:"+totalRideFare);
+            }
+            //total cost of multiple rides
+            Console.WriteLine("total cost of multiple rides are:" + totalRideFare);
+            //Average cost of multiple rides
+            Console.WriteLine("Average cost are:"+totalRideFare / rides.Length);
+            return totalRideFare / rides.Length;
+        }
     }
 }
