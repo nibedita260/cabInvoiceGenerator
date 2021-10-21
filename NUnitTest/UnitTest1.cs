@@ -32,23 +32,39 @@ namespace NUnitTest
                 Assert.AreEqual("Cost Could not LessThan Minimum Cost", e.Message);
             }
         }
+<<<<<<< HEAD
         //Test-2.1 ->Given Avg cost should matches the multiple cab rides cost
         [Test]
         public void Given_Avgcost_ShouldMatches_ToActualAvgCost()
+=======
+        //Test-2.1 ->Given Distance And Time For Multiple Rides When Not Proper Should Return Aggregate Fare
+        [Test]
+        public void GivenDistanceAndTimeForMultipleRides_WhenProper_ShouldReturnAggregateFare()
+>>>>>>> UC3-InvoiceSummary
         {
             InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
             Ride[] rides = { new Ride(3.0, 5.0), new Ride(2.0, 5.0) };
             double actual = invoiceGenerator.CalMultipleRidesFare(rides);
             Assert.AreEqual(30, actual);
         }
+<<<<<<< HEAD
         //Test-1.2 ->When ActualAvg Cost Less than MinimumCost Throw Exception
         [Test]
         public void When_ActualAvgCost_LessThanMinimumCost_ThrowException()
+=======
+        //Test-2.2 ->Given Distance And Time For Multiple Rides When Not Proper Should THrow Exception
+        [Test]
+        public void GivenDistanceAndTimeForMultipleRides_WhenNotProper_ThrowException()
+>>>>>>> UC3-InvoiceSummary
         {
             try
             {
                 InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+<<<<<<< HEAD
                 Ride[] rides = { new Ride(3.0, 5.0), new Ride(2.0, 5.0) };
+=======
+                Ride[] rides = { new Ride(0.1, 0.1), new Ride(0.1, 0.1) };
+>>>>>>> UC3-InvoiceSummary
                 double actual = invoiceGenerator.CalMultipleRidesFare(rides);
                 Assert.AreEqual(30, actual);
             }
@@ -57,5 +73,35 @@ namespace NUnitTest
                 Assert.AreEqual("Cost Could not LessThan Minimum Cost", e.Message);
             }
         }
+<<<<<<< HEAD
+=======
+        //Test-3.1 ->Given Distance And Time For MultipleRides When Not Proper Should Return InvoiceSummary
+        [Test]
+        public void GivenDistanceAndTimeForMultipleRides_WhenProper_ShouldReturnInvoiceSummary()
+        {
+                InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+                Ride[] rides = { new Ride(3.0, 5.0), new Ride(2.0, 5.0) };
+                InvoiceSummary actualInvoiceSummary = invoiceGenerator.GetMultipleRideFare(rides);
+                InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(60.0, 2);
+                Assert.AreEqual(expectedInvoiceSummary, actualInvoiceSummary);
+        }
+        //Test-3.2 ->Given Distance And Time For MultipleRides When Not Proper Throw Exception
+        [Test]
+        public void GivenDistanceAndTimeForMultipleRides_WhenNotProper_ShouldReturnInvoiceSummary()
+        {
+            try
+            {
+                InvoiceGenerator invoiceGenerator = new InvoiceGenerator();
+                Ride[] rides = { new Ride(0.1, 0.1), new Ride(0.1, 0.1) };
+                InvoiceSummary actualInvoiceSummary = invoiceGenerator.GetMultipleRideFare(rides);
+                InvoiceSummary expectedInvoiceSummary = new InvoiceSummary(10.0, 2);
+                //Assert.AreEqual(expectedInvoiceSummary, actualInvoiceSummary);
+            }
+            catch (CabInvoiceGeneratorCustomException e)
+            {
+                Assert.AreEqual("Cost Could not LessThan Minimum Cost", e.Message);
+            }
+        }
+>>>>>>> UC3-InvoiceSummary
     }
 }

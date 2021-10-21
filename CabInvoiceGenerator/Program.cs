@@ -10,7 +10,7 @@ namespace CabInvoiceGenerator
             bool isExit = false;
             while (!isExit)
             {
-                Console.WriteLine("choose 1.CalculateFare 2.MultipleRides");
+                Console.WriteLine("choose 1.CalculateFare 2.MultipleRides 3.InvoiceSummary");
                 options = Convert.ToInt32(Console.ReadLine());
                 switch (options)
                 {
@@ -26,6 +26,11 @@ namespace CabInvoiceGenerator
                         InvoiceGenerator invoiceGeneratorForRides = new InvoiceGenerator();
                         Ride[] ride = { new Ride(3.0, 5.0), new Ride(2.0, 5.0) };
                         invoiceGeneratorForRides.CalMultipleRidesFare(ride);
+                        break;
+                    case 3:
+                        InvoiceGenerator invoiceGeneratorForSummary = new InvoiceGenerator();
+                        Ride[] rides = { new Ride(0.1, 0.1), new Ride(0.1, 0.1) };
+                        invoiceGeneratorForSummary.GetMultipleRideFare(rides);
                         break;
                     default:
                         Console.WriteLine("Choose valid options");
