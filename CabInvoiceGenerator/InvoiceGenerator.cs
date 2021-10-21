@@ -28,16 +28,46 @@ namespace CabInvoiceGenerator
         public double CalMultipleRidesFare(Ride[] rides)
         {
             double totalRideFare = 0.0;
-            foreach(Ride ride in rides)
+            try
             {
-                totalRideFare += CalculateFare(ride.distance, ride.time);
-                Console.WriteLine("total cost of multiple rides are:"+totalRideFare);
+                foreach (Ride ride in rides)
+                {
+                    totalRideFare += CalculateFare(ride.distance, ride.time);
+                }
+                if (totalRideFare < MINIMUM_FARE)
+                    throw new CabInvoiceGeneratorCustomException(CabInvoiceGeneratorCustomException.ExceptionType.INVALID_COST, "Cost Could not LessThan Minimum Cost");
+                //total cost of multiple rides
+                Console.WriteLine("total cost of multiple rides is:" + totalRideFare);
+                //Average cost of multiple rides
+                Console.WriteLine("Average cost are:" + totalRideFare / rides.Length);
             }
-            //total cost of multiple rides
-            Console.WriteLine("total cost of multiple rides are:" + totalRideFare);
-            //Average cost of multiple rides
-            Console.WriteLine("Average cost are:"+totalRideFare / rides.Length);
+            catch(CabInvoiceGeneratorCustomException e)
+            {
+                Console.WriteLine(e.Message);
+            }
             return totalRideFare / rides.Length;
+        }
+        public InvoiceSummary GetMultipleRideFare(Ride[] rides)
+        {
+            double totalRideFare = 0.0;
+            try
+            {
+                foreach (Ride ride in rides)
+                {
+                    totalRideFare += CalculateFare(ride.distance, ride.time);
+                }
+                if (totalRideFare < MINIMUM_FARE)
+                    throw new CabInvoiceGeneratorCustomException(CabInvoiceGeneratorCustomException.ExceptionType.INVALID_COST, "Cost Could not LessThan Minimum Cost");
+                //total cost of multiple rides
+                Console.WriteLine("total cost of multiple rides is:" + totalRideFare);
+                //Average cost of multiple rides
+                Console.WriteLine("Average cost are:" + totalRideFare / rides.Length);
+            }
+            catch (CabInvoiceGeneratorCustomException e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            return new InvoiceSummary(totalRideFare, rides.Length);
         }
     }
 }
